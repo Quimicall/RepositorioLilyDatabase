@@ -23,5 +23,7 @@ class Carta(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     observacoes = models.TextField(null=True, blank=True)
 
+    # Testando upload Github...
+
     def __str__(self):
         return self.nome
