@@ -40,7 +40,7 @@ class User(models.Model):
 class Invent(models.Model):
     ID_INV = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
-    ID_CARD = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    id = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.ID_USER
@@ -105,3 +105,4 @@ class Minigame_User(models.Model):
 
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.
+# E perguntar sobre o ID das cartas, se fiz certo.
