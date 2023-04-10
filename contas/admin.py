@@ -5,7 +5,7 @@ from .models import Carta
 from .models import User
 from .models import Invent
 from .models import Carteira
-from .models import Eventos
+from .models import Evento
 from .models import Event_User
 from .models import Batalha
 from .models import Bat_Log
@@ -17,7 +17,7 @@ admin.site.register(Carta)
 admin.site.register(User)
 admin.site.register(Invent)
 admin.site.register(Carteira)
-admin.site.register(Eventos)
+admin.site.register(Evento)
 admin.site.register(Event_User)
 admin.site.register(Batalha)
 admin.site.register(Bat_Log)

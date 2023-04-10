@@ -54,7 +54,7 @@ class Carteira(models.Model):
         return self.ID_USER
 
 
-class Eventos(models.Model):
+class Evento(models.Model):
     ID_EVENT = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
     NOME_EVENT = models.CharField(max_length=99)
 
@@ -64,8 +64,8 @@ class Eventos(models.Model):
 
 class Event_User(models.Model):
     ID_EVENT_USER = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
-    ID_EVENT = models.ForeignKey(Eventos, on_delete=models.CASCADE, related_name="ID_EVENT2")
-    NOME_EVENT = models.ForeignKey(Eventos, on_delete=models.CASCADE, related_name="NOME_EVENT2")
+    ID_EVENT = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="ID_EVENT2")
+    NOME_EVENT = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="NOME_EVENT2")
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
