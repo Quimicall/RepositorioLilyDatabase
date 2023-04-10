@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('data', models.DateTimeField(auto_now_add=True)),
                 ('nome', models.CharField(max_length=50)),
                 ('imagem', models.CharField(max_length=500)),
-                ('definicao', models.CharField(max_length=400)),
+                ('descricao', models.CharField(max_length=400)),
                 ('valor', models.DecimalField(decimal_places=2, max_digits=30)),
                 ('level', models.DecimalField(decimal_places=0, max_digits=2)),
                 ('afinidade', models.DecimalField(decimal_places=1, max_digits=3)),
