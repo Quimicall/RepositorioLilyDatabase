@@ -30,7 +30,7 @@ class Carta(models.Model):
 
 
 class User(models.Model):
-    ID_USER = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_USER = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     NOME_USER = models.CharField(max_length=34)
 
     def __str__(self):
@@ -38,7 +38,7 @@ class User(models.Model):
 
 
 class Invent(models.Model):
-    ID_INV = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_INV = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
@@ -47,7 +47,7 @@ class Invent(models.Model):
 
 
 class Carteira(models.Model):
-    ID_CARTEIRA = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_CARTEIRA = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -55,7 +55,7 @@ class Carteira(models.Model):
 
 
 class Evento(models.Model):
-    ID_EVENT = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_EVENT = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     NOME_EVENT = models.CharField(max_length=99)
 
     def __str__(self):
@@ -63,7 +63,7 @@ class Evento(models.Model):
 
 
 class Event_User(models.Model):
-    ID_EVENT_USER = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_EVENT_USER = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_EVENT = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="ID_EVENT2")
     NOME_EVENT = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="NOME_EVENT2")
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -73,7 +73,7 @@ class Event_User(models.Model):
 
 
 class Batalha(models.Model):
-    ID_BAT = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_BAT = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     NOME_BAT = models.CharField(max_length=99)
 
     def __str__(self):
@@ -81,7 +81,7 @@ class Batalha(models.Model):
 
 
 class Bat_Log(models.Model):
-    ID_BAT_LOG = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_BAT_LOG = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_BAT = models.ForeignKey(Batalha, on_delete=models.CASCADE, related_name="ID_BAT2")
     NOME_BAT = models.ForeignKey(Batalha, on_delete=models.CASCADE, related_name="NOME_BAT2")
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -91,7 +91,7 @@ class Bat_Log(models.Model):
 
 
 class Minigame(models.Model):
-    ID_MINIG = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_MINIG = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     NOME_MINIG = models.CharField(max_length=99)
 
     def __str__(self):
@@ -99,7 +99,7 @@ class Minigame(models.Model):
 
 
 class Minigame_User(models.Model):
-    ID_MINIG_USER = models.DecimalField(max_digits=9999, decimal_places=0, primary_key=True)
+    ID_MINIG_USER = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_MINIG = models.ForeignKey(Minigame, on_delete=models.CASCADE, related_name="ID_MINIG2")
     ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
 
