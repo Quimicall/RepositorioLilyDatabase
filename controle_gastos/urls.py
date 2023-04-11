@@ -19,9 +19,10 @@ from contas.views import home, listagem, nova_carta
 from django.conf.urls.static import static
 from django.conf import settings
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', listagem, static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)),
-    path('nova/', nova_carta),
-    path('home/', home)
-]
+if settings.DEBUG:
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', listagem, static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)),
+        path('nova/', nova_carta),
+        path('home/', home)
+    ]
