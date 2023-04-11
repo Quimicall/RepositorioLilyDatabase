@@ -1,19 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre L.I.L.Y</title>
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
 </head>
 <body>
+    <header>
+        <div class="center">
+            <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
+            <nav class="menu">
+                <a href="contas/templates/contas/home.html">Home</a>
+                <a href="#">Sobre</a>
+                <a href="#">Menu</a>
+                <a href="#">What?</a>
+            </nav>
+        </div>
+    </header>
 
-    <h2>Listagem</h2>
-    {% for Carta in Cartas %}
-        <li> {{Carta.nome}} - {{ Carta.data }} - {{Carta.valor}} - {{Carta.categoria}} - <a href="{{Carta.imagem}}">{{Carta.imagem}}</a></li>
-    {% endfor %}
-
-
+    <div class="center">
+        <div class="texto-sobre">
+            <h2>Listagem</h2>
+            {% for Carta in Cartas %}
+                <li> <span style="color: #90EE90;">{{Carta.nome}}</span>* - {{ Carta.data }} - {{Carta.valor}} - {{Carta.categoria}} - <a href="{{Carta.imagem}}">{{Carta.imagem}}</a></li>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
