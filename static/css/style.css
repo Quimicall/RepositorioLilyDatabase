@@ -15,10 +15,9 @@
 }
 
 html,body{
-    height: 70vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    height: 100%;
     scroll-snap-align: start;
+    height: 70vh;
 
 }
 
