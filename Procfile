@@ -1,1 +1,1 @@
-web: RepositorioLilyDatabase.wsgi
+web: gunicorn RepositorioLilyDatabase.wsgi --log-file -
