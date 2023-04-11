@@ -1,16 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>L.I.L.Y</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Seja bem vindo!</h1>
+    <header>
+        <div class="center">
+            <div class="logo"><img src="assets/logo.png" alt=""></div>
+            <nav class="menu">
+                <a href="#">Home</a>
+                <a href="#">Sobre</a>
+                <a href="#">Menu</a>
+                <a href="#">What?</a>
+            </nav>
+        </div>
+    </header>
+    <section class="sobre">
+        <div class="extra">
+            <img src="assets/lily.png" alt="">
+        </div>
 
+        <div class="social-media">
+            <a href=""><img src="assets/github.png" alt=""></a>
+            <a href=""><img src="assets/instagram.png" alt=""></a>
+            <a href=""><img src="assets/twitter.png" alt=""></a>
+        </div>
 
-    <p>Agora são: {{ agr }}</p>
+        <div class="center">
+            <div class="texto-sobre">
+                <h1>Estamos desenvolvendo para vocês<br/><span style=" color: #90EE90;">O melhor bot já visto</span></h1>
+                <p> Agora é {{agr}}</p>
+            </div>
+        </div>
+
+    </section>
 </body>
 </html>
