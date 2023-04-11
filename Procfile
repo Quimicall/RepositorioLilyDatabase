@@ -1,1 +1,1 @@
-web: gunicorn RepositorioLilyDatabase.wsgi --log-file -
+web: gunicorn controle_gastos.wsgi --log-file -
