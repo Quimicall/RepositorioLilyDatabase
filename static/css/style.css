@@ -20,7 +20,12 @@
 html,body{
     height: 100%;
     overflow-x: hidden;
-    scroll-snap-align: start;
+    overflow-y: hidden;
+}
+
+.li {
+   scroll-snap-align: start;
+   height: 70vh;
 }
 
 header{
