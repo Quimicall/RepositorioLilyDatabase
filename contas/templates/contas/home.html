@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>L.I.L.Y</title>
-    <link href="RepositorioLilyDatabase/contas/templates/contas/style.css" rel="stylesheet" type="text/css" >
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" >
 </head>
 <body>
     <header>
@@ -21,13 +21,13 @@
     </header>
     <section class="sobre">
         <div class="extra">
-            <img src="RepositorioLilyDatabase/contas/templates/contas/assets/lily.png" alt="">
+            <img src="/contas/templates/contas/assets/lily.png" alt="">
         </div>
 
         <div class="social-media">
-            <a href=""><img src="RepositorioLilyDatabase/contas/templates/contas/assets/github.png" alt=""></a>
-            <a href=""><img src="RepositorioLilyDatabase/contas/templates/contas/assets/instagram.png" alt=""></a>
-            <a href=""><img src="RepositorioLilyDatabase/contas/templates/contas/twitter.png" alt=""></a>
+            <a href=""><img src="{% static 'images/github.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/instagram.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/twitter.png' %}" alt=""></a>
         </div>
 
         <div class="center">
