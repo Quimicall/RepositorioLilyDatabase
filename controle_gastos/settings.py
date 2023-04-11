@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4d%pl0j2%@(#w0%d3v-naz3eh_pr^8z!3pr7l_d66cxevktrca
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://quimicall.github.io/RepositorioLilyDatabase/']
+ALLOWED_HOSTS = []
 
 
 # Application defini'tion # Toda vez que criar um APP coloque ela aqui, e não esqueça da virgula!
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'controle_gastos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['controle_gastos/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
