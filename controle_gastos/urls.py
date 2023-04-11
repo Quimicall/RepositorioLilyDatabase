@@ -24,5 +24,5 @@ if settings.DEBUG:
         path('admin/', admin.site.urls),
         path('', listagem, static),
         path('nova/', nova_carta),
-        path('home/', home)
+        path('home/', home, static)
     ]
