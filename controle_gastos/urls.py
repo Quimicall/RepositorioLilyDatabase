@@ -25,4 +25,4 @@ if settings.DEBUG:
         path('', listagem),
         path('nova/', nova_carta),
         path('home/', home)
-    ]
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
