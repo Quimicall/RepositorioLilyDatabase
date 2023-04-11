@@ -19,6 +19,7 @@
 
 html,body{
     height: 100%;
+    overflow-y: hidden;
     scroll-snap-align: start;
     height: 70vh;
 }
