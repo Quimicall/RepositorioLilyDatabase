@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4d%pl0j2%@(#w0%d3v-naz3eh_pr^8z!3pr7l_d66cxevktrca
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://lilybot.herokuapp.com/']
 
 
 # Application defini'tion # Toda vez que criar um APP coloque ela aqui, e não esqueça da virgula!
