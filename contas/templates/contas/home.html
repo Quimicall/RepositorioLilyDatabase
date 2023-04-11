@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>L.I.L.Y</title>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" >
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
 </head>
 <body>
     <header>
         <div class="center">
-            <div class="logo"><img src="RepositorioLilyDatabase/contas/templates/contas/assets/logo.png" alt=""></div>
+            <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
             <nav class="menu">
                 <a href="#">Home</a>
                 <a href="#">Sobre</a>
@@ -21,7 +22,7 @@
     </header>
     <section class="sobre">
         <div class="extra">
-            <img src="/contas/templates/contas/assets/lily.png" alt="">
+            <img src="{% static 'images/lily.png' %}" alt="Lily">
         </div>
 
         <div class="social-media">
