@@ -14,35 +14,35 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Batalha',
             fields=[
-                ('ID_BAT', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_BAT', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('NOME_BAT', models.CharField(max_length=99)),
             ],
         ),
         migrations.CreateModel(
             name='Eventos',
             fields=[
-                ('ID_EVENT', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_EVENT', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('NOME_EVENT', models.CharField(max_length=99)),
             ],
         ),
         migrations.CreateModel(
             name='Minigame',
             fields=[
-                ('ID_MINIG', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_MINIG', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('NOME_MINIG', models.CharField(max_length=99)),
             ],
         ),
         migrations.CreateModel(
             name='User',
             fields=[
-                ('ID_USER', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_USER', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('NOME_USER', models.CharField(max_length=34)),
             ],
         ),
         migrations.CreateModel(
             name='Minigame_User',
             fields=[
-                ('ID_MINIG_USER', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_MINIG_USER', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('ID_MINIG', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ID_MINIG2', to='contas.minigame')),
                 ('ID_USER', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.user')),
             ],
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Invent',
             fields=[
-                ('ID_INV', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_INV', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('ID_CARD', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.carta')),
                 ('ID_USER', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.user')),
             ],
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Event_User',
             fields=[
-                ('ID_EVENT_USER', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_EVENT_USER', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('ID_EVENT', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ID_EVENT2', to='contas.eventos')),
                 ('ID_USER', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.user')),
                 ('NOME_EVENT', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='NOME_EVENT2', to='contas.eventos')),
@@ -67,14 +67,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Carteira',
             fields=[
-                ('ID_CARTEIRA', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_CARTEIRA', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('ID_USER', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.user')),
             ],
         ),
         migrations.CreateModel(
             name='Bat_Log',
             fields=[
-                ('ID_BAT_LOG', models.DecimalField(decimal_places=0, max_digits=9999, primary_key=True, serialize=False)),
+                ('ID_BAT_LOG', models.DecimalField(decimal_places=0, max_digits=999, primary_key=True, serialize=False)),
                 ('ID_BAT', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ID_BAT2', to='contas.batalha')),
                 ('ID_USER', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contas.user')),
                 ('NOME_BAT', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='NOME_BAT2', to='contas.batalha')),
