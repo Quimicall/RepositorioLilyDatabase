@@ -13,21 +13,20 @@
         <div class="center">
             <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
             <nav class="menu">
-                <a href="contas/templates/contas/home.html">Home</a>
+                <a href="home/">Home</a>
                 <a href="#">Sobre</a>
                 <a href="#">Menu</a>
                 <a href="#">What?</a>
             </nav>
         </div>
-    </header>
 
-    <div class="center">
-        <div class="texto-sobre">
-            <h2>Listagem</h2>
-            {% for Carta in Cartas %}
-                <li> <span style="color: #90EE90;">{{Carta.nome}}</span>* - {{ Carta.data }} - {{Carta.valor}} - {{Carta.categoria}} - <a href="{{Carta.imagem}}">{{Carta.imagem}}</a></li>
-            {% endfor %}
+        <div class="lista">
+            <div class="texto-sobre">
+                <h2>Listagem</h2>
+                {% for Carta in Cartas %}
+                    <li> <span style="color: #90EE90;">{{Carta.nome}}</span> - {{ Carta.data }} - {{Carta.valor}} - {{Carta.categoria}} - <a href="{{Carta.imagem}}">{{Carta.imagem}}</a></li>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</body>
+    </header>
 </html>
