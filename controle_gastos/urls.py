@@ -22,7 +22,7 @@ from django.conf import settings
 if settings.DEBUG:
     urlpatterns = [
         path('admin/', admin.site.urls),
-        path('', listagem, static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)),
+        path('', listagem),
         path('nova/', nova_carta),
         path('home/', home)
     ]
