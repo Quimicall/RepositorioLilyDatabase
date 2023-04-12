@@ -41,8 +41,8 @@ class CopiaCarta(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
     observacao = models.TextField(null=True, blank=True)
 
-    def __str__(self):
-        return self.ID_CCARD
+    def __int__(self):
+        return self.nome
 
 
 class User(models.Model):
