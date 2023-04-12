@@ -33,11 +33,11 @@ class CopiaCarta(models.Model):
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
     nome = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="nome2")
     imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="imagem2")
-    valor = models.ForeignKey('Categoria, on_delete=models.CASCADE, related_name="valor2"')
-    level = models.ForeignKey('Categoria, on_delete=models.CASCADE, related_name="level2"')
-    afinidade = models.ForeignKey('Categoria, on_delete=models.CASCADE, related_name="afinidade2"')
-    exp = models.ForeignKey('Categoria, on_delete=models.CASCADE, related_name="exp2"')
-    categoria = models.ForeignKey('Categoria, on_delete=models.CASCADE, related_name="categoria2"''')
+    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="valor2")
+    level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="level2")
+    afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="afinidade2")
+    exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="exp2")
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
     observacao = models.TextField(null=True, blank=True)
 
     def __str__(self):
