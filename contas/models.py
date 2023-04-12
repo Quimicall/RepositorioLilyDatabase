@@ -15,6 +15,7 @@ class Categoria(models.Model):
         return self.valor
 
 
+# VSF SARA
 class Carta(models.Model):
     data = models.DateTimeField()
     nome = models.CharField(max_length=50)
