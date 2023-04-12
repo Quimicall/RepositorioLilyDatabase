@@ -42,7 +42,7 @@ class CopiaCarta(models.Model):
     observacao = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.nome
+        return self.ID_CCARD
 
 
 class User(models.Model):
