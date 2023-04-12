@@ -12,6 +12,7 @@ class Categoria(models.Model):
 
 
 class Carta(models.Model):
+    id = models.DecimalField(primary_key=True)
     data = models.DateTimeField()
     nome = models.CharField(max_length=50)
     imagem = models.CharField(max_length=500)
