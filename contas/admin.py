@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-#from .models import Categoria
+from .models import Categoria
 from .models import Carta
 from .models import User
 from .models import Invent
@@ -14,7 +14,7 @@ from .models import Minigame_User
 from .models import CopiaCarta
 from .models import DateSim
 
-#admin.site.register(Categoria)
+admin.site.register(Categoria)
 admin.site.register(Carta)
 admin.site.register(User)
 admin.site.register(Invent)

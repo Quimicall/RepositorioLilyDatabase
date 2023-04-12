@@ -3,6 +3,18 @@ from django.db import models
 
 # Create your models here.
 
+class Categoria(models.Model):
+    nomec = models.CharField(max_length=100, primary_key=True)
+    dt_criacao = models.DateTimeField(auto_now_add=True)
+    valor = models.DecimalField(max_digits=30, decimal_places=2)
+    level = models.DecimalField(max_digits=2, decimal_places=0)
+    afinidade = models.DecimalField(max_digits=3, decimal_places=1)
+    exp = models.DecimalField(max_digits=3, decimal_places=0)
+
+    def __str__(self):
+        return self.valor
+
+
 class Carta(models.Model):
     data = models.DateTimeField()
     nome = models.CharField(max_length=50)
@@ -21,6 +33,11 @@ class CopiaCarta(models.Model):
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
     nome = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="nome2")
     imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="imagem2")
+    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="valor2")
+    level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="level2")
+    afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="afinidade2")
+    exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="exp2")
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
     observacao = models.TextField(null=True, blank=True)
 
     def __str__(self):
