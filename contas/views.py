@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Carta
-from .form import CartaForm
 import datetime
 
 
@@ -15,10 +14,4 @@ def listagem(request):
     data['Cartas'] = Carta.objects.all()
     return render(request, 'contas/listagem.html', data)
 
-
-def nova_carta(request):
-    data = {}
-    form = CartaForm()
-    data['form'] = form
-    return render(request, 'contas/form.html', data)
 # Create your views here.
