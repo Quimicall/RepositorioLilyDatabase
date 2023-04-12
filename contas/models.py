@@ -42,7 +42,7 @@ class CopiaCarta(models.Model):
     observacao = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.nome
+        return 'nome: {} {} {} {} {} {}'.format(self.nome, self.imagem, self.valor, self.level, self.afinidade, self.exp)
 
 
 class User(models.Model):
