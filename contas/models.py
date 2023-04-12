@@ -16,7 +16,6 @@ class Categoria(models.Model):
 
 
 class Carta(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     data = models.DateTimeField()
     nome = models.CharField(max_length=50)
     imagem = models.CharField(max_length=500)
