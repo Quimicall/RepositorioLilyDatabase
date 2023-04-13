@@ -32,17 +32,17 @@ class Carta(models.Model):
 class CopiaCarta(models.Model):
     ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
-    nome = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='nomeCopia', related_name="nome2")
-    imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='imagemCopia', related_name="imagem2")
-    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='valorCopia', related_name="valor2")
-    level = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='levelCopia', related_name="level2")
-    afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='afinidadeCopia', related_name="afinidade2")
-    exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='expCopia', related_name="exp2")
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='valorCopia', related_name="categoria2")
+    nome2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='nomeCopia')
+    imagem2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='imagemCopia')
+    valor2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='valorCopia')
+    level2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='levelCopia')
+    afinidade2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='afinidadeCopia')
+    exp2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='expCopia')
+    categoria2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='valorCopia')
     observacao = models.TextField(null=True, blank=True)
 
-    def get_deferred_fields(self):
-        return '{}-{}-{}-{}-{}-{}'.format(self.nome, self.imagem, self.valor, self.level, self.afinidade, self.exp)
+    def __str__(self):
+        return self.nome2
 
 
 class User(models.Model):
