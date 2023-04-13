@@ -29,7 +29,7 @@ class Carta(models.Model):
         return self.nome
 
 
-'''class CopiaCarta(models.Model):
+class CopiaCarta(models.Model):
     ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
     nome2 = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='nome2')
@@ -42,7 +42,7 @@ class Carta(models.Model):
     observacao = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.nome2'''
+        return self.nome2
 
 
 class User(models.Model):
