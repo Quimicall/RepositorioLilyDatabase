@@ -32,12 +32,12 @@ class Carta(models.Model):
 class CopiaCarta(models.Model):
     ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
-    nome = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='nome2',  db_column='nome')
-    imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='imagem2',  db_column='imagem')
-    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='valor2',  db_column='valor')
-    level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='level2', db_column='level')
-    afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2', db_column='afinidade')
-    exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2',  db_column='exp')
+    nome = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='nome2',  db_column='nomes')
+    imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='imagem2',  db_column='imagems')
+    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='valor2',  db_column='valors')
+    level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='level2', db_column='levels')
+    afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2', db_column='afinidades')
+    exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     observacao = models.TextField(null=True, blank=True)
 
