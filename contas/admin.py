@@ -12,6 +12,7 @@ from .models import Bat_Log
 from .models import Minigame
 from .models import Minigame_User
 from .models import DateSim
+from .models import CopiaCarta
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
@@ -25,5 +26,6 @@ admin.site.register(Bat_Log)
 admin.site.register(Minigame)
 admin.site.register(Minigame_User)
 admin.site.register(DateSim)
+admin.site.register(CopiaCarta)
 
 # Registre seus models aqui.

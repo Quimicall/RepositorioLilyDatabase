@@ -2,11 +2,12 @@ from django.db import models
 
 
 # Create your models here.
-
+# criar uma consulta para buscar o nome dos itens da tabela.
 class Categoria(models.Model):
     nomec = models.CharField(max_length=100, primary_key=True)
     dt_criacao = models.DateTimeField(auto_now_add=True)
     valor = models.DecimalField(max_digits=30, decimal_places=2)
+    vl = str(valor)
     level = models.DecimalField(max_digits=2, decimal_places=0)
     afinidade = models.DecimalField(max_digits=3, decimal_places=1)
     exp = models.DecimalField(max_digits=3, decimal_places=0)
@@ -21,12 +22,34 @@ class Carta(models.Model):
     nome = models.CharField(max_length=50)
     imagem = models.CharField(max_length=500)
     descricao = models.CharField(max_length=400)
+    tipo = models.CharField(max_length=50)
+    HP = models.DecimalField(max_digits=999, decimal_places=2)
+    ATK = models.DecimalField(max_digits=999, decimal_places=2)
+    DEF = models.DecimalField(max_digits=999, decimal_places=2)
+    SPEED = models.DecimalField(max_digits=999, decimal_places=2)
+    PM = models.DecimalField(max_digits=999, decimal_places=2)
+    TOTAL = models.DecimalField(max_digits=999, decimal_places=2)
+    talento = models.CharField(max_length=500)
     observacoes = models.TextField(null=True, blank=True)
 
     # Testando upload Github...
 
     def __str__(self):
         return self.nome
+
+
+class CopiaCarta(models.Model):
+    ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
+    idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    # imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="imagem2")
+    valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="valor2")
+    # level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="level2")
+    # afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="afinidade2")
+    # exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="exp2")
+    # categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
+
+    def __str__(self):
+        return str(f'{self.ID_CCARD} {self.idcard} {self.valor}')
 
 
 class User(models.Model):
@@ -73,12 +96,17 @@ class Event_User(models.Model):
 
 class DateSim(models.Model):
     ID_DATE_SIM = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
+    # 'idds = str(ID_DATE_SIM)'
     ID_CARD_DATE = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    idcd = str(ID_CARD_DATE)
     PERGUNTA = models.CharField(max_length=99)
     RESPOSTA = models.CharField(max_length=99)
 
+    ''' def __str__(self):
+        return str(self.ID_DATE_SIM)'''
+
     def __str__(self):
-        return self.ID_DATE_SIM
+        return str(f'{self.ID_DATE_SIM} {self.ID_CARD_DATE}')
 
 
 class Batalha(models.Model):
