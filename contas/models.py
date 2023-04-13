@@ -32,8 +32,8 @@ class Carta(models.Model):
 class CopiaCarta(models.Model):
     ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
-    nome2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='Categoria', db_column='nome')
-    imagem2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='Categoria', db_column='imagem')
+    nome2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='Carta', db_column='nome')
+    imagem2 = models.ForeignKey(Carta, on_delete=models.CASCADE, to_field='Carta', db_column='imagem')
     valor2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='Categoria', db_column='valor')
     level2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='Categoria', db_column='level')
     afinidade2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, to_field='Categoria', db_column='afinidade')
