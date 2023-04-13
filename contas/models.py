@@ -41,8 +41,8 @@ class CopiaCarta(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
     observacao = models.TextField(null=True, blank=True)
 
-    def __str__(self):
-        return 'nome: {} {} {} {} {} {}'.format(self.nome, self.imagem, self.valor, self.level, self.afinidade, self.exp)
+    def get_deferred_fields(self):
+        return '{}-{}-{}-{}-{}-{}'.format(self.nome, self.imagem, self.valor, self.level, self.afinidade, self.exp)
 
 
 class User(models.Model):
