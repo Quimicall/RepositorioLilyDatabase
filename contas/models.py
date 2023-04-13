@@ -29,22 +29,6 @@ class Carta(models.Model):
         return self.nome
 
 
-class CopiaCarta(models.Model):
-    ID_CCARD = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
-    idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
-    nome2 = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='nome2')
-    imagem2 = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name='imagem2')
-    valor2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='valor2')
-    level2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='level2')
-    afinidade2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2')
-    exp2 = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='exp2')
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    observacao = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return self.nome2
-
-
 class User(models.Model):
     ID_USER = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     NOME_USER = models.CharField(max_length=34)
@@ -56,7 +40,6 @@ class User(models.Model):
 class Invent(models.Model):
     ID_INV = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
     ID_USER_inv = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_card_copy = models.ForeignKey(CopiaCarta, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.ID_USER_inv
