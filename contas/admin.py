@@ -13,6 +13,7 @@ from .models import Minigame
 from .models import Minigame_User
 from .models import DateSim
 from .models import CopiaCarta
+from .models import Item
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
@@ -27,5 +28,6 @@ admin.site.register(Minigame)
 admin.site.register(Minigame_User)
 admin.site.register(DateSim)
 admin.site.register(CopiaCarta)
+admin.site.register(Item)
 
 # Registre seus models aqui.

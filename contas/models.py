@@ -18,12 +18,38 @@ class Categoria(models.Model):
         return self.nomec
 
 
+class Item(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDItem')
+    Data = models.DateTimeField()
+    Item_Nome = models.CharField(max_length=999)
+    HP_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    MP_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    ATK_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    ATK_M_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    DEF_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    DEF_M_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    SPEED_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    QUEIMADURA_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ENVENENAR_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    SANGRAMENTO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    PEN_ARM_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ROUBO_VIDA_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ACERTO_CRIT_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ESCUDO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    DMG_VERDADEIRO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    Descricao_Item = models.TextField(null=False, blank=True)
+    observacoes_Item = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return str(f'{self.Item_Nome}')
+
+
 # VSF SARA
 class Carta(models.Model):
     data = models.DateTimeField(auto_now_add=True)
     nome = models.CharField(max_length=50)
     imagem = models.CharField(max_length=500)
-    descricao = models.CharField(max_length=400)
+    Anime = models.CharField(max_length=400)
     tipo = models.CharField(max_length=50)
     HP = models.DecimalField(max_digits=999, decimal_places=2)
     ATK = models.DecimalField(max_digits=999, decimal_places=2)
@@ -45,6 +71,7 @@ class CopiaCarta(models.Model):
     idcard = models.ForeignKey(Carta, on_delete=models.CASCADE)
     # imagem = models.ForeignKey(Carta, on_delete=models.CASCADE, related_name="imagem2")
     valor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="valor2")
+
     # level = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="level2")
     # afinidade = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="afinidade2")
     # exp = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="exp2")
