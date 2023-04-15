@@ -5,6 +5,26 @@ from django.db import models
 # criar uma consulta para buscar o nome dos itens da tabela.
 
 # Depois mudar os nomes das váriaveis das tabelas, 'nomec' == Tier E, D, C, B, A, S, SS.
+
+
+class MoedaPadrao(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoeda')
+
+    Sakuras = models.DecimalField(max_digits=999, decimal_places=2)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.Sakuras}')
+
+
+class MoedaPaga(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoeda')
+
+    Sakuras_Gold = models.DecimalField(max_digits=999, decimal_places=2)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.Sakuras_Gold}')
+
+
 class Categoria(models.Model):
     Tier = models.CharField(max_length=100, primary_key=True)
 
@@ -210,8 +230,12 @@ class Carteira(models.Model):
 
     ID_USER_carteira = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+
+    sakurasPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.ID_USER_carteira
+        return str(f'{self.ID_USER_carteira} {self.sakuras_user}')
 
 
 class Evento(models.Model):
@@ -329,6 +353,20 @@ class MercadoGlobal(models.Model):
         return str(f'{self.ID_User} {self.itens} {self.preco_Item}')
 
 
+class MercadoGlobalPlayer(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, selialize=False,
+                             verbose_name='ID_MERCADO_GLOBAL_PLAYER')
+
+    ID_User = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_MARKET')
+
+    itens = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name='ITENS_LOJA_PLAYER')
+
+    preco_Item = models.DecimalField(max_digits=999, decimal_places=2)
+
+    def __str__(self):
+        return str(f'{self.ID_User} {self.itens} {self.preco_Item}')
+
+
 class RecompensaDiaria(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_RECOMP_DIARIA')
 
@@ -336,6 +374,96 @@ class RecompensaDiaria(models.Model):
 
     def __str__(self):
         return str(f'')
+
+
+class Deck(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_DECK')
+
+    NomeDeck = models.CharField(max_length=999)
+
+    quantidadeCartas = models.DecimalField(max_digits=64, decimal_places=0)
+
+    cartas = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    precoDeck = models.DecimalField(max_digits=999, decimal_places=2)
+
+    def __str__(self):
+        return str(f'{self.ID} | {self.NomeDeck} | {self.quantidadeCartas} | {self.precoDeck}')
+
+
+# O USUARIO PODE CRIAR MAIS DE UM DECK, PERGUNTAR SE ESTÁ CERTO.
+class DeckUser(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_DECK')
+    # Perguntar se é assim que cria varios decks para um usuario, atribuindo o ID dele no deck ou se atribui o ID do DECK ao user.
+    IDUserDeck = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    NomeDeckUser = models.CharField(max_length=500)
+
+    QuantidadeDeCartaUser = models.DecimalField(max_digits=999, decimal_places=0)
+
+    cartasDeckUser = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f'{self.ID} | {self.IDUserDeck} | {self.NomeDeckUser} | {self.QuantidadeDeCartaUser}')
+
+
+class SistemaDeTroca(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_SIS_TROCA')
+
+    ID_USER = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    ID_TROCA = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.ID_USER} {self.ID_TROCA}')
+
+
+class LootBox_Basic(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_LootBox_Basic')
+
+    PrecoBasic = models.DecimalField(max_digits=999, decimal_places=2)
+
+    PrecoPago = models.DecimalField(max_digits=999, decimal_places=2)
+
+    sakuraBasica = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+
+    sakuraPaga = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.PrecoBasic} {self.PrecoPago}')
+
+
+class LootBox_Medium(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_LootBox_Medium')
+
+    PrecoMedium = models.DecimalField(max_digits=999, decimal_places=2)
+
+    PrecoPagoMedium = models.DecimalField(max_digits=999, decimal_places=2)
+
+    sakuraBasicaMedium = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+
+    sakuraPagaMedium = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.PrecoMedium} {self.PrecoPagoMedium}')
+
+
+# As loot box precisam de um sistema pra randomificar a quantidade de itens, raridade, e Cartas.
+class LootBox_Superior(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_LootBox_Superior')
+
+    PrecoSuperior = models.DecimalField(max_digits=999, decimal_places=2)
+
+    PrecoPagoSuperior = models.DecimalField(max_digits=999, decimal_places=2)
+
+    sakuraBasicaSuperior = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+
+    sakuraPagaSuperior = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+
+    ItemLootBox = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.PrecoSuperior} {self.PrecoPagoSuperior}')
 
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
