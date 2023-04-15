@@ -18,6 +18,7 @@ from .models import Tipo
 from .models import Classe
 from .models import Atributos
 from .models import Inventario_Carta
+from .models import Perfil
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
@@ -37,6 +38,7 @@ admin.site.register(Tipo)
 admin.site.register(Classe)
 admin.site.register(Atributos)
 admin.site.register(Inventario_Carta)
+admin.site.register(Perfil)
 
 
 # Registre seus models aqui.
