@@ -53,6 +53,8 @@ class Item(models.Model):
 
     Item_Nome = models.CharField(max_length=999)
 
+    img_item = models.CharField(max_length=999)
+
     HP_Item = models.DecimalField(max_digits=999, decimal_places=0)
 
     MP_Item = models.DecimalField(max_digits=999, decimal_places=0)
@@ -217,6 +219,8 @@ class Evento(models.Model):
 
     NOME_EVENT = models.CharField(max_length=99)
 
+    Limite = models.DecimalField(max_digits=10, decimal_places=0)
+
     def __str__(self):
         return self.NOME_EVENT
 
@@ -229,6 +233,8 @@ class Event_User(models.Model):
     NOME_EVENT_user = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="NOME_EVENT2")
 
     ID_USER_evt = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    Event_Limites = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.NOME_EVENT_user
@@ -295,6 +301,19 @@ class Minigame_User(models.Model):
 
     def __str__(self):
         return self.NOME_MINIG_LOG
+
+
+class Perfil(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_PERFIL')
+
+    IMG_Perfil = models.CharField(max_length=999)
+
+    descricao_perfil = models.CharField(max_length=999)
+
+    def __str__(self):
+        return str(f'{self.user}')
 
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
