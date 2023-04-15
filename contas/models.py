@@ -341,7 +341,7 @@ class Perfil(models.Model):
 
 
 class MercadoGlobal(models.Model):
-    ID = models.BigAutoField(auto_created=True, primary_key=True, selialize=False, verbose_name='ID_MERCADO_GLOBAL')
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_MERCADOGLOBAL')
 
     ID_User = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_MARKET')
 
@@ -354,7 +354,7 @@ class MercadoGlobal(models.Model):
 
 
 class MercadoGlobalPlayer(models.Model):
-    ID = models.BigAutoField(auto_created=True, primary_key=True, selialize=False,
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False,
                              verbose_name='ID_MERCADO_GLOBAL_PLAYER')
 
     ID_User = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_MARKET')

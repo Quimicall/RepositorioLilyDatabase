@@ -19,6 +19,17 @@ from .models import Classe
 from .models import Atributos
 from .models import Inventario_Carta
 from .models import Perfil
+from .models import MoedaPadrao
+from .models import MoedaPaga
+from .models import Deck
+from .models import DeckUser
+from .models import MercadoGlobal
+from .models import MercadoGlobalPlayer
+from .models import RecompensaDiaria
+from .models import SistemaDeTroca
+from .models import LootBox_Basic
+from .models import LootBox_Medium
+from .models import LootBox_Superior
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
@@ -38,7 +49,17 @@ admin.site.register(Tipo)
 admin.site.register(Classe)
 admin.site.register(Atributos)
 admin.site.register(Inventario_Carta)
-admin.site.register(Perfil)
+admin.site.register(MoedaPadrao)
+admin.site.register(MoedaPaga)
+admin.site.register(Deck)
+admin.site.register(DeckUser)
+admin.site.register(MercadoGlobal)
+admin.site.register(MercadoGlobalPlayer)
+admin.site.register(RecompensaDiaria)
+admin.site.register(SistemaDeTroca)
+admin.site.register(LootBox_Basic)
+admin.site.register(LootBox_Medium)
+admin.site.register(LootBox_Superior)
 
 
 # Registre seus models aqui.
