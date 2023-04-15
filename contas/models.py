@@ -6,7 +6,7 @@ from django.db import models
 
 # Depois mudar os nomes das váriaveis das tabelas, 'nomec' == Tier E, D, C, B, A, S, SS.
 class Categoria(models.Model):
-    nomec = models.CharField(max_length=100, primary_key=True)
+    Tier = models.CharField(max_length=100, primary_key=True)
     dt_criacao = models.DateTimeField(auto_now_add=True)
     valor = models.DecimalField(max_digits=30, decimal_places=2)
     vl = str(valor)
@@ -15,7 +15,7 @@ class Categoria(models.Model):
     exp = models.DecimalField(max_digits=3, decimal_places=0)
 
     def __str__(self):
-        return self.nomec
+        return self.Tier
 
 
 class Item(models.Model):
@@ -39,6 +39,8 @@ class Item(models.Model):
     DMG_VERDADEIRO_Item = models.DecimalField(max_digits=999, decimal_places=2)
     Descricao_Item = models.TextField(null=False, blank=True)
     observacoes_Item = models.TextField(null=True, blank=True)
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(f'{self.Item_Nome}')
@@ -95,6 +97,18 @@ class Invent(models.Model):
 
     def __str__(self):
         return self.ID_USER_inv
+
+
+class Inventario_Carta(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV._CARD')
+    CARTA_INV = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    ID_USER_INV_CARD = models.ForeignKey(User, on_delete=models.CASCADE)
+    ITEM = models.IntegerField(default=0)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return str(f'{self.ID} {self.ID_USER_INV_CARD} {self.CARTA_INV}')
 
 
 class Carteira(models.Model):
@@ -172,6 +186,13 @@ class Minigame_User(models.Model):
 
     def __str__(self):
         return self.NOME_MINIG_LOG
+
+
+class Classe(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_CLASSE')
+    Tier = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    Tipo = models.CharField(max_length=999)
+    
 
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.
