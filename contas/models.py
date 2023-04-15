@@ -315,6 +315,28 @@ class Perfil(models.Model):
     def __str__(self):
         return str(f'{self.user}')
 
+
+class MercadoGlobal(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, selialize=False, verbose_name='ID_MERCADO_GLOBAL')
+
+    ID_User = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_MARKET')
+
+    itens = models.ForeignKey(Invent, on_delete=models.CASCADE, verbose_name='ITENS_LOJA')
+
+    preco_Item = models.DecimalField(max_digits=999, decimal_places=2)
+
+    def __str__(self):
+        return str(f'{self.ID_User} {self.itens} {self.preco_Item}')
+
+
+class RecompensaDiaria(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_RECOMP_DIARIA')
+
+    # Por agora ele vai puxar so o ID, vamos pensar depois o que colocar e como colocar aqui dentro, para fazer a recompensa funcionar.
+
+    def __str__(self):
+        return str(f'')
+
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
 # E perguntar sobre o ID das cartas, se fiz certo.
