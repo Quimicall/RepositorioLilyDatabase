@@ -58,19 +58,19 @@ class Metas(models.Model):
 
     descricao_meta_um = models.TextField(max_length=999)
 
-    lv_meta_um = models.DecimalField(max_digits=999)
+    lv_meta_um = models.DecimalField(max_digits=999, decimal_places=0)
 
     meta_Dois = models.CharField(max_length=999)
 
     descricao_meta_Dois = models.TextField(max_length=999)
 
-    lv_meta_dois = models.DecimalField(max_digits=999)
+    lv_meta_dois = models.DecimalField(max_digits=999, decimal_places=0)
 
     meta_Tres = models.CharField(max_length=999)
 
     descricao_meta_Tres = models.TextField(max_length=999)
 
-    lv_meta_tres = models.DecimalField(max_digits=999)
+    lv_meta_tres = models.DecimalField(max_digits=999, decimal_places=0)
 
     def __str__(self):
         return str(f'{self.ID} {self.Nome_Carta_Meta}')
