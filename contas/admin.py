@@ -30,6 +30,11 @@ from .models import SistemaDeTroca
 from .models import LootBox_Basic
 from .models import LootBox_Medium
 from .models import LootBox_Superior
+from .models import AscensaoCarta
+from .models import Metas
+from .models import Talentos
+from .models import Passivas
+
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
@@ -60,6 +65,11 @@ admin.site.register(SistemaDeTroca)
 admin.site.register(LootBox_Basic)
 admin.site.register(LootBox_Medium)
 admin.site.register(LootBox_Superior)
+admin.site.register(Perfil)
+admin.site.register(AscensaoCarta)
+admin.site.register(Metas)
+admin.site.register(Talentos)
+admin.site.register(Passivas)
 
 
 # Registre seus models aqui.
