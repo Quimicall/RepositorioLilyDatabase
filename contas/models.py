@@ -8,7 +8,7 @@ from django.db import models
 
 
 class MoedaPadrao(models.Model):
-    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoeda')
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPadrao')
 
     Sakuras = models.DecimalField(max_digits=999, decimal_places=2)
 
@@ -17,12 +17,63 @@ class MoedaPadrao(models.Model):
 
 
 class MoedaPaga(models.Model):
-    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoeda')
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPaga')
 
     Sakuras_Gold = models.DecimalField(max_digits=999, decimal_places=2)
 
     def __str__(self):
         return str(f'{self.ID} {self.Sakuras_Gold}')
+
+
+class Passivas(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PASSIVAS')
+
+    NomeElemento = models.CharField(max_length=99)
+
+    Passiva = models.CharField(max_length=999)
+
+    DescricaoPassiva = models.TextField(max_length=999)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.NomeElemento} {self.Passiva}')
+
+
+class Talentos(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_TALENTOS')
+
+    talento = models.CharField(max_length=999)
+
+    descricao_talento = models.TextField(max_length=999)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.talento}')
+
+
+class Metas(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_METAS')
+
+    Nome_Carta_Meta = models.CharField(max_length=999)
+
+    meta_Um = models.CharField(max_length=999)
+
+    descricao_meta_um = models.TextField(max_length=999)
+
+    lv_meta_um = models.DecimalField(max_digits=999)
+
+    meta_Dois = models.CharField(max_length=999)
+
+    descricao_meta_Dois = models.TextField(max_length=999)
+
+    lv_meta_dois = models.DecimalField(max_digits=999)
+
+    meta_Tres = models.CharField(max_length=999)
+
+    descricao_meta_Tres = models.TextField(max_length=999)
+
+    lv_meta_tres = models.DecimalField(max_digits=999)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.Nome_Carta_Meta}')
 
 
 class Categoria(models.Model):
@@ -126,6 +177,16 @@ class Classe(models.Model):
         return str(f'{self.Tier} {self.classe_Carta}')
 
 
+'''class SubClasse(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_SUBCLASSE')
+
+    ClassePrincipal = models.ForeignKey(Classe, on_delete=models.CASCADE)
+    
+    subclasse = models.CharField(max_length=999)
+    
+    temSubclasse = models.DecimalField(max_digits=2, decimal_places=0)'''
+
+
 class Tipo(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_TIPO')
 
@@ -140,6 +201,12 @@ class Tipo(models.Model):
     DEFM_T = models.DecimalField(max_digits=999, decimal_places=0)
 
     DEF_T = models.DecimalField(max_digits=999, decimal_places=0)
+
+    FORTE_CONTRA = models.CharField(max_length=999)
+
+    FRACO_CONTRA = models.CharField(max_length=999)
+
+    PASSIVA_TIPO = models.ForeignKey(Passivas, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(f'{self.ID} {self.tipo}')
@@ -161,7 +228,9 @@ class Carta(models.Model):
 
     # classes = models.ForeignKey(Tipo, on_delete=models.CASCADE)
 
-    talento = models.CharField(max_length=500)
+    talentoCartas = models.ForeignKey(Talentos, on_delete=models.CASCADE)
+
+    metasCartas = models.ForeignKey(Metas, on_delete=models.CASCADE)
 
     observacoes = models.TextField(null=True, blank=True)
 
@@ -464,6 +533,22 @@ class LootBox_Superior(models.Model):
 
     def __str__(self):
         return str(f'{self.ID} {self.PrecoSuperior} {self.PrecoPagoSuperior}')
+
+
+class AscensaoCarta(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_LootBox_Superior')
+
+    classeCartaASC = models.ForeignKey(Classe, on_delete=models.CASCADE)
+
+    Primeira_Ascensao = models.DecimalField(max_digits=99, decimal_places=0)
+
+    Segunda_Ascensao = models.DecimalField(max_digits=99, decimal_places=0)
+
+    Terceira_Ascensao = models.DecimalField(max_digits=99, decimal_places=0)
+
+    def __str__(self):
+        return str(
+            f'{self.ID} {self.classeCartaASC} {self.Primeira_Ascensao} {self.Segunda_Ascensao} {self.Terceira_Ascensao}')
 
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
