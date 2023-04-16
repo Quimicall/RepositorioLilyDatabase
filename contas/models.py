@@ -552,6 +552,21 @@ class AscensaoCarta(models.Model):
         return str(
             f'{self.ID} {self.classeCartaASC} {self.Primeira_Ascensao} {self.Segunda_Ascensao} {self.Terceira_Ascensao}')
 
+
+# Ele tem que puxar o inventario do usuario para treinar a carta? Perguntar para o professor.
+class CampoDeTreinamento(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False,
+                             verbose_name='ID_CAMPO_DE_TREINAMENTO')
+
+    CartaParaUpar = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    Limite = models.DecimalField(max_digits=2, decimal_places=0)
+
+    tempo = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return str(f'{self.ID} {self.CartaParaUpar} {self.Limite}')
+
 # ME LEIA!!!!
 # Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
 # E perguntar sobre o ID das cartas, se fiz certo.
