@@ -6,14 +6,16 @@ from django.db import models
 
 # Depois mudar os nomes das váriaveis das tabelas, 'nomec' == Tier E, D, C, B, A, S, SS.
 
+# Perguntar para o professor se a Ascensao está correta, para puxar uma ascensao daquela para varias cartas.
+
 
 class MoedaPadrao(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPadrao')
 
-    Sakuras = models.DecimalField(max_digits=999, decimal_places=2)
+    Lotus = models.DecimalField(max_digits=999, decimal_places=2)
 
     def __str__(self):
-        return str(f'{self.ID} {self.Sakuras}')
+        return str(f'{self.ID} {self.Lotus}')
 
 
 class MoedaPaga(models.Model):
@@ -299,12 +301,12 @@ class Carteira(models.Model):
 
     ID_USER_carteira = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+    Lotus_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
     sakurasPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(f'{self.ID_USER_carteira} {self.sakuras_user}')
+        return str(f'{self.ID_USER_carteira} {self.Lotus_user}')
 
 
 class Evento(models.Model):
