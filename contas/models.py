@@ -269,16 +269,17 @@ class User(models.Model):
     NOME_USER = models.CharField(max_length=34)
 
     def __str__(self):
-        return self.ID
+        return str(f'{self.ID} {self.NOME_USER}')
 
 
+# Inventario não deveria ter um espaço para armazenar os itens?
 class Invent(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV.')
 
     ID_USER_inv = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.ID_USER_inv
+        return str(f'{self.ID_USER_inv}')
 
 
 class Inventario_Carta(models.Model):
@@ -332,7 +333,7 @@ class Event_User(models.Model):
     Event_Limites = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NOME_EVENT_user
+        return str(f'{self.NOME_EVENT_user}')
 
 
 class DateSim(models.Model):
@@ -373,7 +374,7 @@ class Bat_Log(models.Model):
     ID_USER_log = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NOME_BAT_log
+        return str(f'{self.NOME_BAT_log}')
 
 
 class Minigame(models.Model):
@@ -395,7 +396,7 @@ class Minigame_User(models.Model):
     ID_USER_minig = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NOME_MINIG_LOG
+        return str(f'{self.NOME_MINIG_LOG}')
 
 
 class Perfil(models.Model):
