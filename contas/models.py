@@ -12,19 +12,19 @@ from django.db import models
 class MoedaPadrao(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPadrao')
 
-    Lotus = models.DecimalField(max_digits=999, decimal_places=2)
+    Sakuras = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     def __str__(self):
-        return str(f'{self.ID} {self.Lotus}')
+        return str(f'{self.ID} {self.Sakuras}')
 
 
 class MoedaPaga(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPaga')
 
-    Sakuras_Gold = models.DecimalField(max_digits=999, decimal_places=2)
+    Lotus_Gold = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     def __str__(self):
-        return str(f'{self.ID} {self.Sakuras_Gold}')
+        return str(f'{self.ID} {self.Lotus_Gold}')
 
 
 class Passivas(models.Model):
@@ -128,35 +128,35 @@ class Item(models.Model):
 
     img_item = models.CharField(max_length=999)
 
-    HP_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    HP_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    MP_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    MP_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    ATK_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    ATK_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    ATK_M_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    ATK_M_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    DEF_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    DEF_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    DEF_M_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    DEF_M_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    SPEED_Item = models.DecimalField(max_digits=999, decimal_places=0)
+    SPEED_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    QUEIMADURA_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    QUEIMADURA_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    ENVENENAR_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ENVENENAR_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    SANGRAMENTO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    SANGRAMENTO_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    PEN_ARM_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    PEN_ARM_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    ROUBO_VIDA_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ROUBO_VIDA_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    ACERTO_CRIT_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ACERTO_CRIT_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    ESCUDO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    ESCUDO_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
-    DMG_VERDADEIRO_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    DMG_VERDADEIRO_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     Descricao_Item = models.TextField(null=False, blank=True)
 
@@ -196,13 +196,13 @@ class Tipo(models.Model):
 
     tipo = models.CharField(max_length=999)
 
-    ATK_T = models.DecimalField(max_digits=999, decimal_places=0)
+    ATK_T = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    ATKM_T = models.DecimalField(max_digits=999, decimal_places=0)
+    ATKM_T = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    DEFM_T = models.DecimalField(max_digits=999, decimal_places=0)
+    DEFM_T = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
-    DEF_T = models.DecimalField(max_digits=999, decimal_places=0)
+    DEF_T = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
     FORTE_CONTRA = models.CharField(max_length=999)
 
@@ -273,7 +273,7 @@ class User(models.Model):
 
 
 class Invent(models.Model):
-    ID_INV = models.DecimalField(max_digits=999, decimal_places=0, primary_key=True)
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV.')
 
     ID_USER_inv = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -299,14 +299,14 @@ class Inventario_Carta(models.Model):
 class Carteira(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_CARTEIRA')
 
-    ID_USER_carteira = models.ForeignKey(User, on_delete=models.CASCADE)
+    ID_USER_carteira = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    Lotus_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+    Sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
-    sakurasPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+    LotusPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(f'{self.ID_USER_carteira} {self.Lotus_user}')
+        return str(f'{self.ID_USER_carteira} {self.Sakuras_user}')
 
 
 class Evento(models.Model):
@@ -314,7 +314,7 @@ class Evento(models.Model):
 
     NOME_EVENT = models.CharField(max_length=99)
 
-    Limite = models.DecimalField(max_digits=10, decimal_places=0)
+    Limite = models.DecimalField(max_digits=10, decimal_places=0, default=10)
 
     def __str__(self):
         return self.NOME_EVENT
@@ -407,6 +407,8 @@ class Perfil(models.Model):
 
     descricao_perfil = models.CharField(max_length=999)
 
+    objects = models.Manager()
+
     def __str__(self):
         return str(f'{self.user}')
 
@@ -418,7 +420,7 @@ class MercadoGlobal(models.Model):
 
     itens = models.ForeignKey(Invent, on_delete=models.CASCADE, verbose_name='ITENS_LOJA')
 
-    preco_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    preco_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     def __str__(self):
         return str(f'{self.ID_User} {self.itens} {self.preco_Item}')
@@ -432,7 +434,7 @@ class MercadoGlobalPlayer(models.Model):
 
     itens = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name='ITENS_LOJA_PLAYER')
 
-    preco_Item = models.DecimalField(max_digits=999, decimal_places=2)
+    preco_Item = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     def __str__(self):
         return str(f'{self.ID_User} {self.itens} {self.preco_Item}')
@@ -452,11 +454,11 @@ class Deck(models.Model):
 
     NomeDeck = models.CharField(max_length=999)
 
-    quantidadeCartas = models.DecimalField(max_digits=64, decimal_places=0)
+    quantidadeCartas = models.DecimalField(max_digits=64, decimal_places=0, default=64)
 
     cartas = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
-    precoDeck = models.DecimalField(max_digits=999, decimal_places=2)
+    precoDeck = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
     def __str__(self):
         return str(f'{self.ID} | {self.NomeDeck} | {self.quantidadeCartas} | {self.precoDeck}')
@@ -470,7 +472,7 @@ class DeckUser(models.Model):
 
     NomeDeckUser = models.CharField(max_length=500)
 
-    QuantidadeDeCartaUser = models.DecimalField(max_digits=999, decimal_places=0)
+    QuantidadeDeCartaUser = models.DecimalField(max_digits=999, decimal_places=0, default=64)
 
     cartasDeckUser = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
@@ -498,7 +500,7 @@ class LootBox_Basic(models.Model):
 
     sakuraBasica = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
-    sakuraPaga = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+    LotusPaga = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(f'{self.ID} {self.PrecoBasic} {self.PrecoPago}')
@@ -513,7 +515,7 @@ class LootBox_Medium(models.Model):
 
     sakuraBasicaMedium = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
-    sakuraPagaMedium = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+    LotusPagaMedium = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(f'{self.ID} {self.PrecoMedium} {self.PrecoPagoMedium}')
@@ -529,7 +531,7 @@ class LootBox_Superior(models.Model):
 
     sakuraBasicaSuperior = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
-    sakuraPagaSuperior = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+    LotusPagaSuperior = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
 
     ItemLootBox = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
