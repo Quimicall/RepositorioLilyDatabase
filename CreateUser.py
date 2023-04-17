@@ -1,10 +1,11 @@
-'''import os
+import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'controle_gastos.settings')
 django.setup()
+
 from django.contrib.auth.models import User
-from contas.models import User, CopiaCarta, Invent, MoedaPadrao
+from contas.models import CopiaCarta, Invent, MoedaPadrao
 
 # Crie uma instância do usuário
 nome_usuario = input("Insira o nome de usuário desejado: ")
@@ -27,4 +28,4 @@ inventario.save()
 
 # Salve o usuário no banco de dados
 user.save()
-print("Usuário criado com sucesso!")'''
+print("Usuário criado com sucesso!")

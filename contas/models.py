@@ -452,7 +452,8 @@ class MercadoGlobalPlayer(models.Model):
 class RecompensaDiaria(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_RECOMP_DIARIA')
 
-    # Por agora ele vai puxar so o ID, vamos pensar depois o que colocar e como colocar aqui dentro, para fazer a recompensa funcionar.
+    # Por agora ele vai puxar so o ID, vamos pensar depois o que colocar e como colocar aqui dentro, para fazer a
+    # recompensa funcionar.
 
     def __str__(self):
         return str(f'')
@@ -476,7 +477,8 @@ class Deck(models.Model):
 # O USUARIO PODE CRIAR MAIS DE UM DECK, PERGUNTAR SE ESTÁ CERTO.
 class DeckUser(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_DECK')
-    # Perguntar se é assim que cria varios decks para um usuario, atribuindo o ID dele no deck ou se atribui o ID do DECK ao user.
+    # Perguntar se é assim que cria varios decks para um usuario, atribuindo o ID dele no deck ou se atribui o ID do
+    # DECK ao user.
     IDUserDeck = models.ForeignKey(User, on_delete=models.CASCADE)
 
     NomeDeckUser = models.CharField(max_length=500)
@@ -578,6 +580,5 @@ class CampoDeTreinamento(models.Model):
     def __str__(self):
         return str(f'{self.ID} {self.CartaParaUpar} {self.Limite}')
 
-# ME LEIA!!!!
-# Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome nos logs.(COMPLETE)
-# E perguntar sobre o ID das cartas, se fiz certo.
+# ME LEIA!!!! Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome
+#  nos logs.(COMPLETE) E perguntar sobre o ID das cartas, se fiz certo.
