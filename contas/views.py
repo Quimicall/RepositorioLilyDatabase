@@ -3,6 +3,7 @@ from .models import Carta
 import datetime
 
 
+
 def home(request):
     data = {'agr': datetime.datetime.now()}
     # html = "<html><body> Está é a hora DO DUELO!!! %s.</body></html>" % agr

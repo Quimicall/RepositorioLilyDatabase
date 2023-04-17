@@ -14,6 +14,8 @@ class MoedaPadrao(models.Model):
 
     Sakuras = models.DecimalField(max_digits=999, decimal_places=2, default=0)
 
+    objects = models.Manager()
+
     def __str__(self):
         return str(f'{self.ID} {self.Sakuras}')
 
@@ -259,6 +261,8 @@ class CopiaCarta(models.Model):
 
     # categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="categoria2")
 
+    objects = models.Manager()
+
     def __str__(self):
         return str(f'{self.ID_CCARD} {self.idcard}')
 
@@ -277,6 +281,10 @@ class Invent(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV.')
 
     ID_USER_inv = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    carta_inventario = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(f'{self.ID_USER_inv}')
