@@ -2,7 +2,6 @@ from django.contrib import admin
 from django import forms
 from .models import Categoria
 from .models import Carta
-from .models import User
 from .models import Invent
 from .models import Carteira
 from .models import Evento
@@ -39,7 +38,6 @@ from .models import CampoDeTreinamento
 
 admin.site.register(Categoria)
 admin.site.register(Carta)
-admin.site.register(User)
 admin.site.register(Invent)
 admin.site.register(Carteira)
 admin.site.register(Evento)

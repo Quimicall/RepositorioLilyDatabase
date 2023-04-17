@@ -1,5 +1,5 @@
 from django.db import models
-import django
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -239,6 +239,8 @@ class Carta(models.Model):
 
     observacoes = models.TextField(null=True, blank=True)
 
+    objects = models.Manager()
+
     # Testando upload Github...
 
     def __str__(self):
@@ -268,7 +270,7 @@ class CopiaCarta(models.Model):
         return str(f'{self.ID_CCARD} {self.idcard}')
 
 
-class User(models.Model):
+'''class User(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_USER')
 
     NOME_USER = models.CharField(max_length=34)
@@ -276,7 +278,7 @@ class User(models.Model):
 
     def __str__(self):
         return str(f'{self.ID} {self.NOME_USER}')
-    # def save(User):
+    # def save(User):'''
 
 
 # Inventario não deveria ter um espaço para armazenar os itens?
@@ -587,7 +589,7 @@ class CampoDeTreinamento(models.Model):
     tempo = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return str(f'{self.ID} {self.CartaParaUpar} {self.Limite}')
+        return str(f'{self.ID} {self.CartaParaUpar}')
 
 # ME LEIA!!!! Perguntar para o professor sobre o retorno do def, se pode puxar duas ForeignKey para mostrar o nome
 #  nos logs.(COMPLETE) E perguntar sobre o ID das cartas, se fiz certo.
