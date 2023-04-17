@@ -271,9 +271,12 @@ class User(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_USER')
 
     NOME_USER = models.CharField(max_length=34)
+    # Fazer o arquivo ser salvo, puxando a função SAVE.
+    user = ()
 
     def __str__(self):
         return str(f'{self.ID} {self.NOME_USER}')
+    # def save(User):
 
 
 # Inventario não deveria ter um espaço para armazenar os itens?
@@ -479,6 +482,8 @@ class DeckUser(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_DECK')
     # Perguntar se é assim que cria varios decks para um usuario, atribuindo o ID dele no deck ou se atribui o ID do
     # DECK ao user.
+
+    #puxar o ID DO USER PRO DECK
     IDUserDeck = models.ForeignKey(User, on_delete=models.CASCADE)
 
     NomeDeckUser = models.CharField(max_length=500)
@@ -486,6 +491,8 @@ class DeckUser(models.Model):
     QuantidadeDeCartaUser = models.DecimalField(max_digits=999, decimal_places=0, default=64)
 
     cartasDeckUser = models.ForeignKey(Carta, on_delete=models.CASCADE)
+
+    #FOR EACH ATRIBUIR A CARTA.
 
     def __str__(self):
         return str(f'{self.ID} | {self.IDUserDeck} | {self.NomeDeckUser} | {self.QuantidadeDeCartaUser}')
@@ -573,7 +580,7 @@ class CampoDeTreinamento(models.Model):
 
     CartaParaUpar = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
-    Limite = models.DecimalField(max_digits=2, decimal_places=0)
+# PUXAR A INFOR DO NAVEGADOR PARA PUXAR O HORARIO.
 
     tempo = models.DateTimeField(auto_now_add=True, blank=True)
 
