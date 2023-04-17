@@ -1,4 +1,5 @@
 from django.db import models
+import django
 
 
 # Create your models here.
@@ -272,7 +273,6 @@ class User(models.Model):
 
     NOME_USER = models.CharField(max_length=34)
     # Fazer o arquivo ser salvo, puxando a função SAVE.
-    user = ()
 
     def __str__(self):
         return str(f'{self.ID} {self.NOME_USER}')
@@ -316,6 +316,8 @@ class Carteira(models.Model):
     Sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
 
     LotusPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(f'{self.ID_USER_carteira} {self.Sakuras_user}')
