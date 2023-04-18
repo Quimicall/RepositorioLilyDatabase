@@ -1,4 +1,4 @@
-import os
+"""import os
 import django
 from django.db.models import Model
 
@@ -6,16 +6,16 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'controle_gastos.settings')
 django.setup()
 
 from django.contrib.auth.models import User
-from contas.models import CopiaCarta, Invent, Carteira, Carta
+from contas.models import Invent, Carteira, Carta
 
 # Crie uma instância do usuário
-"""nome_usuario = input("Insira o nome de usuário desejado: ")
+nome_usuario = input("Insira o nome de usuário desejado: ")
 senha = input("Insira sua senha: ")
 email = input("Digite seu Email: ")
-user = User.objects.create_user(username=nome_usuario, email=email, password=senha)"""
+user = User.objects.create_user(username=nome_usuario, email=email, password=senha)
 
 # Defina a senha do usuário usando o método set_password
-"""User.set_password(senha)"""
+User.set_password(senha)
 
 # Adiciona a carta, 1500 moedas e o inventário ao usuário
 carta = Carta.objects.create(nome='Nome da Carta', Anime='Nome do Anime', atributo='atributo')
@@ -36,3 +36,4 @@ print("Usuário criado com sucesso!")
 # ESSA PORRA TA FUNCIONANDO. SO QUE. PRECISA LOCALIZAR A TABELA DO USER DO DJANGO, E ATRIBUIR AS TABELAS A ELA. E DEPOIS
 # QUE CRIAR O USUARIO, COMENTE ESSE CODIGO, E REINICIE O SERVIDOR, FUTURAMENTE N VAMOS PRECISAR DELE(OU VAMOS) E CRIAREMOS
 # PELO SITE.
+"""
