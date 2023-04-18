@@ -322,7 +322,7 @@ class Carteira(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return str(f'{self.ID_USER_carteira} {self.Sakuras_user}')
+        return str(f'{self.ID_USER_carteira} {self.Sakuras_user} {self.LotusPaga_user}')
 
 
 class Evento(models.Model):
