@@ -1,4 +1,20 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from contas.models import Perfil
+
+
+@receiver(post_save, sender=User)
+def created_profile(sender, instance, created, **kwargs):
+    if created:
+        Perfil.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+"""from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from contas.models import Invent, Carteira, Perfil, MoedaPadrao, MoedaPaga
@@ -17,4 +33,4 @@ def criar_inventario_carteira_perfil(sender, instance, created, **kwargs):
         inventario = Invent.objects.create(NomeUsuarios=instance, ID_USER_inv=instance)
         carteira = Carteira.objects.create(ID_USER_carteira=instance)
         perfil = Perfil.objects.create(user=instance)
-        print("Inventario, Carteira e Perfil criados para o usuário:", instance.username)
+        print("Inventario, Carteira e Perfil criados para o usuário:", instance.username)"""

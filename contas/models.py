@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.apps import AppConfig
+from django.core.signals import setting_changed
 
 
 # Create your models here.
@@ -287,6 +288,11 @@ class CopiaCarta(models.Model):
 
 
 # Inventario não deveria ter um espaço para armazenar os itens?
+
+def InventAtribuido(sender, **kwargs):
+    print('Inventario atribuido!')
+
+
 class Invent(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV.')
 
@@ -297,6 +303,9 @@ class Invent(models.Model):
     carta_inventario = models.ForeignKey(Carta, on_delete=models.CASCADE, null=True, blank=True)
 
     objects = models.Manager()
+
+    def ready(self):
+        setting_changed.connect(InventAtribuido)
 
     def __str__(self):
         return str(f'{self.ID_USER_inv} || {self.carta_inventario}')
@@ -424,7 +433,7 @@ class Minigame_User(models.Model):
 class Perfil(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='ID_USER_PERFIL')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='ID_USER_PERFIL')
 
     IMG_Perfil = models.CharField(max_length=999)
 
