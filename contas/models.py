@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.apps import AppConfig
 from django.core.signals import setting_changed
 
 
@@ -433,16 +432,22 @@ class Minigame_User(models.Model):
 class Perfil(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='ID_USER_PERFIL')
+    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL')
 
-    IMG_Perfil = models.CharField(max_length=999)
+    IMG_Perfil = models.CharField(max_length=999, null=True)
 
-    descricao_perfil = models.CharField(max_length=999)
+    descricao_perfil = models.CharField(max_length=999, null=True)
 
     objects = models.Manager()
 
     def __str__(self):
         return str(f'{self.user}')
+
+
+class Users(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    perfil = models.OneToOneField(Perfil, on_delete=models.CASCADE)
 
 
 class MercadoGlobal(models.Model):

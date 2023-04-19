@@ -19,6 +19,7 @@ def save_profile(sender, instance, **kwargs):
 def save_invent(sender, instance, **kwargs):
     instance.invent.save()
 
+
 """from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User

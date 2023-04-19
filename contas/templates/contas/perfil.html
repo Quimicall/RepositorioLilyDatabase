@@ -9,7 +9,7 @@
     <p><strong>Email:</strong> {{ email }}</p>
     <p><strong>Informações Adicionais:</strong> {{ info_adicional }}</p>
     <h2>Alterar Senha</h2>
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         <label for="id_senha_antiga">Senha Antiga:</label>
         <input type="password" name="senha_antiga" id="id_senha_antiga" required>

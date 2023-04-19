@@ -1,38 +1,40 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from controle_gastos.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth import login
+from django.urls import reverse_lazy
 from .models import Carta
 import datetime
 
-
-def register(request):
+"""def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # substitua 'home' pela URL desejada para redirecionar após o registro
+            return redirect('perfil')  # substitua 'home' pela URL desejada para redirecionar após o registro
     else:
         form = UserCreationForm()
 
-    return render(request, 'contas/register.html', {'form': form})
+    return render(request, 'contas/register.html', {'form': form})"""
 
 
-"""def register(request):
+def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            # username = form.cleaned_data.get('username')
+            login(request, User)
             messages.success(request, f'Sua conta foi criada! Você está logado agora.')
-            return redirect('login')
+            sucess_url = reverse_lazy('perfil')
 
-        else:
-            form = UserRegisterForm()
-        return render(request, 'contas/register.html', {'form': form})"""
+    else:
+        form = UserRegisterForm()
+    return render(request, 'contas/register.html', {'form': form})
 
 
 @login_required
@@ -47,7 +49,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Sua conta foi atualizada!')
-            return redirect('profile')
+            sucess_url = reverse_lazy('perfil')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -58,7 +60,7 @@ def profile(request):
         'p_form': p_form
     }
 
-    return render(request, 'contas/profile.html', context)
+    return render(request, 'contas/perfil.html', context)
 
 
 def home(request):
