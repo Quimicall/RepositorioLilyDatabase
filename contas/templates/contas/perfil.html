@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil de Usuário</title>
+</head>
+<body>
+    <h1>Perfil de Usuário</h1>
+    <p><strong>Nome de Usuário:</strong> {{ username }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Informações Adicionais:</strong> {{ info_adicional }}</p>
+    <h2>Alterar Senha</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_senha_antiga">Senha Antiga:</label>
+        <input type="password" name="senha_antiga" id="id_senha_antiga" required>
+        <label for="id_nova_senha">Nova Senha:</label>
+        <input type="password" name="nova_senha" id="id_nova_senha" required>
+        <label for="id_confirmar_senha">Confirmar Senha:</label>
+        <input type="password" name="confirmar_senha" id="id_confirmar_senha" required>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

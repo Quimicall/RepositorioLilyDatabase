@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Página de Login</title>
+    <title>Registro de Usuário</title>
 </head>
 <body>
-    <h1>Página de Login</h1>
+    <h1>Registro de Usuário</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Login">
+        <button type="submit">Registrar</button>
     </form>
 </body>
 </html>

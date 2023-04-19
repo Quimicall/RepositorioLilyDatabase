@@ -24,7 +24,7 @@ if settings.DEBUG:
         path('admin/', admin.site.urls),
         path('', listagem),
         path('home/', home),
-        path('registro', register)
+        path('registro/', register),
         # path('accounts', include('django.contrib.auth.urls')),
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
