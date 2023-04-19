@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -13,7 +14,7 @@ from django.contrib.auth.models import User
 class MoedaPadrao(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPadrao')
 
-    Sakuras = models.DecimalField(max_digits=999, decimal_places=2, default=0)
+    Sakuras = models.DecimalField(max_digits=999, decimal_places=2, default=0, null=True)
 
     objects = models.Manager()
 
@@ -24,7 +25,7 @@ class MoedaPadrao(models.Model):
 class MoedaPaga(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='IDMoedaPaga')
 
-    Lotus_Gold = models.DecimalField(max_digits=999, decimal_places=2, default=0)
+    Lotus_Gold = models.DecimalField(max_digits=999, decimal_places=2, default=0, null=True)
 
     def __str__(self):
         return str(f'{self.ID} {self.Lotus_Gold}')
@@ -266,6 +267,10 @@ class CopiaCarta(models.Model):
 
     objects = models.Manager()
 
+    """def Cartas_Atribuidas(self, **kwargs):
+        if kwargs['Criado']:
+            Users = User.objects.create(user=kwargs['instance'])"""
+
     def __str__(self):
         return str(f'{self.ID_CCARD} {self.idcard}')
 
@@ -287,12 +292,14 @@ class Invent(models.Model):
 
     ID_USER_inv = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    carta_inventario = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    NomeUsuarios = models.CharField(max_length=999, null=True, blank=True)
+
+    carta_inventario = models.ForeignKey(Carta, on_delete=models.CASCADE, null=True, blank=True)
 
     objects = models.Manager()
 
     def __str__(self):
-        return str(f'{self.ID_USER_inv}')
+        return str(f'{self.ID_USER_inv} || {self.carta_inventario}')
 
 
 class Inventario_Carta(models.Model):
@@ -315,9 +322,9 @@ class Carteira(models.Model):
 
     ID_USER_carteira = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    Sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE)
+    Sakuras_user = models.ForeignKey(MoedaPadrao, on_delete=models.CASCADE, null=True, blank=True)
 
-    LotusPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE)
+    LotusPaga_user = models.ForeignKey(MoedaPaga, on_delete=models.CASCADE, null=True, blank=True)
 
     objects = models.Manager()
 
@@ -487,7 +494,7 @@ class DeckUser(models.Model):
     # Perguntar se é assim que cria varios decks para um usuario, atribuindo o ID dele no deck ou se atribui o ID do
     # DECK ao user.
 
-    #puxar o ID DO USER PRO DECK
+    # puxar o ID DO USER PRO DECK
     IDUserDeck = models.ForeignKey(User, on_delete=models.CASCADE)
 
     NomeDeckUser = models.CharField(max_length=500)
@@ -496,7 +503,7 @@ class DeckUser(models.Model):
 
     cartasDeckUser = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
-    #FOR EACH ATRIBUIR A CARTA.
+    # FOR EACH ATRIBUIR A CARTA.
 
     def __str__(self):
         return str(f'{self.ID} | {self.IDUserDeck} | {self.NomeDeckUser} | {self.QuantidadeDeCartaUser}')
@@ -584,7 +591,7 @@ class CampoDeTreinamento(models.Model):
 
     CartaParaUpar = models.ForeignKey(Carta, on_delete=models.CASCADE)
 
-# PUXAR A INFOR DO NAVEGADOR PARA PUXAR O HORARIO.
+    # PUXAR A INFOR DO NAVEGADOR PARA PUXAR O HORARIO.
 
     tempo = models.DateTimeField(auto_now_add=True, blank=True)
 
