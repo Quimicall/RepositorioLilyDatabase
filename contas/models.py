@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.signals import setting_changed
 
 
 # Create your models here.
@@ -9,6 +7,15 @@ from django.core.signals import setting_changed
 # Depois mudar os nomes das váriaveis das tabelas, 'nomec' == Tier E, D, C, B, A, S, SS.
 
 # Perguntar para o professor se a Ascensao está correta, para puxar uma ascensao daquela para varias cartas.
+
+class User(models.Model):
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
+
+    nomeUser = models.CharField(max_length=150)
+
+    email = models.CharField(max_length=200)
+
+    senha = models.CharField(max_length=100)
 
 
 class MoedaPadrao(models.Model):
@@ -287,11 +294,6 @@ class CopiaCarta(models.Model):
 
 
 # Inventario não deveria ter um espaço para armazenar os itens?
-
-def InventAtribuido(sender, **kwargs):
-    print('Inventario atribuido!')
-
-
 class Invent(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_INV.')
 
@@ -302,9 +304,6 @@ class Invent(models.Model):
     carta_inventario = models.ForeignKey(Carta, on_delete=models.CASCADE, null=True, blank=True)
 
     objects = models.Manager()
-
-    def ready(self):
-        setting_changed.connect(InventAtribuido)
 
     def __str__(self):
         return str(f'{self.ID_USER_inv} || {self.carta_inventario}')
@@ -442,12 +441,6 @@ class Perfil(models.Model):
 
     def __str__(self):
         return str(f'{self.user}')
-
-
-class Users(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    perfil = models.OneToOneField(Perfil, on_delete=models.CASCADE)
 
 
 class MercadoGlobal(models.Model):

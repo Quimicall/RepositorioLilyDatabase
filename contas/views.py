@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from controle_gastos.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from .models import Carta
+from .models import Carta, Item
 import datetime
 
 """def register(request):
@@ -21,8 +21,7 @@ import datetime
 
     return render(request, 'contas/register.html', {'form': form})"""
 
-
-def register(request):
+"""def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -35,6 +34,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'contas/register.html', {'form': form})
+"""
 
 
 @login_required
@@ -53,14 +53,14 @@ def profile(request):
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        """"p_form = ProfileUpdateForm(instance=request.user.profile)"""
 
-    context = {
+    """context = {
         'u_form': u_form,
         'p_form': p_form
-    }
+    }"""
 
-    return render(request, 'contas/perfil.html', context)
+    return render(request, 'contas/perfil.html')  # , context
 
 
 def home(request):
@@ -69,9 +69,12 @@ def home(request):
     return render(request, "contas/home.html", data)
 
 
+@login_required
 def listagem(request):
     data = {}
     data['Cartas'] = Carta.objects.all()
     return render(request, 'contas/listagem.html', data)
+
+    # Resto do código da view
 
 # Create your views here.

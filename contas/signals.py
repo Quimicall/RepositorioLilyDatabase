@@ -1,7 +1,6 @@
 from django.db.models.signals import post_save, pre_delete
-from django.contrib.auth.models import User
-from django.dispatch import receiver
-from contas.models import Perfil, Invent, Carteira, Carta
+from django.dispatch import receiver, Signal
+from contas.models import Perfil, Invent, Carteira, Carta, Item
 
 
 @receiver(post_save, sender=Perfil)
