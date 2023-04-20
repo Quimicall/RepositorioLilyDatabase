@@ -7,11 +7,13 @@ from contas.models import Perfil, Invent, Carteira, Carta, Item
 def created_profile(sender, instance, created, **kwargs):
     if created:
         Perfil.objects.create(user=instance)
+    pass
 
 
 @receiver(post_save, sender=Perfil)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+    pass
 
 
 @receiver(post_save, sender=Invent)

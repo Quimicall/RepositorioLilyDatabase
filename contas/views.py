@@ -21,7 +21,8 @@ import datetime
 
     return render(request, 'contas/register.html', {'form': form})"""
 
-"""def register(request):
+
+def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -34,16 +35,15 @@ import datetime
     else:
         form = UserRegisterForm()
     return render(request, 'contas/register.html', {'form': form})
-"""
 
 
 @login_required
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = UserUpdateForm(request.POST,
-                                request.FILES,
-                                instance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.perfil)
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -53,12 +53,12 @@ def profile(request):
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        """"p_form = ProfileUpdateForm(instance=request.user.profile)"""
+        p_form = ProfileUpdateForm(instance=request.user.perfil)
 
-    """context = {
+    context = {
         'u_form': u_form,
-        'p_form': p_form
-    }"""
+        'p_form': p_form,
+    }
 
     return render(request, 'contas/perfil.html')  # , context
 
