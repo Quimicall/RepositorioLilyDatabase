@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from controle_gastos.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from .models import Carta, Item
+from .models import Carta, Item, Perfil
 import datetime
 
 """def register(request):
@@ -31,10 +31,12 @@ def register(request):
             login(request, User)
             messages.success(request, f'Sua conta foi criada! Você está logado agora.')
             sucess_url = reverse_lazy('perfil')
-
+            profile = Perfil.objects.create(user=request.user)
+            player, created = Perfil.objects.get_or_create(user=request.user)
     else:
         form = UserRegisterForm()
     return render(request, 'contas/register.html', {'form': form})
+
 
 
 @login_required

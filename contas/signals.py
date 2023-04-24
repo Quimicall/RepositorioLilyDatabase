@@ -4,20 +4,12 @@ from contas.models import Perfil, Invent, Carteira, Carta, Item
 from django.contrib.auth.models import User
 
 
-@receiver(post_save, sender=Perfil)
-def created_profile(sender, instance, created, **kwargs):
-    if created:
-        Perfil.objects.create(user=instance)
-    pass
-
-
 @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
 def save_profile(sender, instance, created, **kwargs):
     user = instance
     if created:
         profile = Perfil(user=user)
         profile.save()
-    pass
 
 
 @receiver(post_save, sender=Invent)
