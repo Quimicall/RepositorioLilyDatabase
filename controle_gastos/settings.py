@@ -126,7 +126,7 @@ MODELS_TO_BE_POST_SAVE_HANDLED = ['register', 'profile', 'user']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = 'contas/home'
-LOGIN_REDIRECT_URL = 'contas/login'
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'login'
 
 django_heroku.settings(locals())

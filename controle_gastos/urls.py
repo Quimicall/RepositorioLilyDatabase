@@ -16,21 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.template.defaulttags import url
 from django.urls import path, include
-from contas.views import home, listagem, register, profile, login
+from contas.views import home, listagem, login
 from django.conf.urls.static import static
 from django.conf import settings
-from django.contrib.auth.views import logout_then_login # login
+from django.contrib import admin
 
 import controle_gastos.forms
 import contas.views
 
+urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('waifu', listagem),
+        path('home/', home),
+        path('accounts/', include('django.contrib.auth.urls')),
+        path('login/', login)
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-        path('', listagem),
-        path('home/', home),
-        path('registro/', register),
-        path('perfil/', profile, name='perfil'),
-
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
