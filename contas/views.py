@@ -9,7 +9,8 @@ from django.urls import reverse_lazy
 from .models import Carta, Item, Perfil
 import datetime
 
-"""def register(request):
+
+def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -19,7 +20,7 @@ import datetime
     else:
         form = UserCreationForm()
 
-    return render(request, 'contas/register.html', {'form': form})"""
+    return render(request, 'contas/register.html', {'form': form})
 
 
 def register(request):
@@ -31,12 +32,10 @@ def register(request):
             login(request, User)
             messages.success(request, f'Sua conta foi criada! Você está logado agora.')
             sucess_url = reverse_lazy('perfil')
-            profile = Perfil.objects.create(user=request.user)
             player, created = Perfil.objects.get_or_create(user=request.user)
     else:
         form = UserRegisterForm()
     return render(request, 'contas/register.html', {'form': form})
-
 
 
 @login_required
@@ -62,7 +61,7 @@ def profile(request):
         'p_form': p_form,
     }
 
-    return render(request, 'contas/perfil.html')  # , context
+    return render(request, 'contas/perfil.html')  # , context"""
 
 
 def home(request):

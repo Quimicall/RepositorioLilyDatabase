@@ -1,5 +1,6 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
+
 
 # Create your models here.
 # criar uma consulta para buscar o nome dos itens da tabela.
@@ -17,7 +18,18 @@ from django.contrib.auth.models import User
 
     senha = models.CharField(max_length=100)
 
-    senha2= models.CharField(max_length=100)"""
+    senha2 = models.CharField(max_length=100)"""
+
+
+class User(AbstractUser):
+    """User model."""
+
+    ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
+    username = None
+    email = models.EmailField('email address', unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
 class MoedaPadrao(models.Model):
@@ -435,9 +447,9 @@ class Perfil(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL')
 
-    IMG_Perfil = models.CharField(max_length=999, null=True)
+    IMG_Perfil = models.CharField(max_length=999, null=True, blank=True)
 
-    descricao_perfil = models.CharField(max_length=999, null=True)
+    descricao_perfil = models.CharField(max_length=999, null=True, blank=True)
 
     objects = models.Manager()
 
