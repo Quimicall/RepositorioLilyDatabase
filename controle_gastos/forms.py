@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from contas.models import Perfil, User
 
@@ -9,7 +9,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['nomeUser', 'email']  # 'password' , 'password2'
+        fields = ['username', 'email']  # 'password' , 'password2'
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -17,7 +17,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['nomeUser', 'email']
+        fields = ['username', 'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):

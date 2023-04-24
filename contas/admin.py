@@ -34,6 +34,7 @@ from .models import Metas
 from .models import Talentos
 from .models import Passivas
 from .models import CampoDeTreinamento
+from .models import User
 
 
 admin.site.register(Categoria)
@@ -70,6 +71,7 @@ admin.site.register(Metas)
 admin.site.register(Talentos)
 admin.site.register(Passivas)
 admin.site.register(CampoDeTreinamento)
+admin.site.register(User)
 
 
 # Registre seus models aqui.

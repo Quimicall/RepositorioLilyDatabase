@@ -9,27 +9,28 @@ from django.db import models
 
 # Perguntar para o professor se a Ascensao está correta, para puxar uma ascensao daquela para varias cartas.
 
-"""class User(models.Model):
+class User(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
 
-    nomeUser = models.CharField(max_length=150)
+    username = models.CharField(max_length=150)
 
-    email = models.CharField(max_length=200)
+    email = models.EmailField('email address', unique=True)  # email = models.CharField(max_length=200)
 
-    senha = models.CharField(max_length=100)
+    """senha = models.(max_length=100)
 
     senha2 = models.CharField(max_length=100)"""
 
+    def __str__(self):
+        return str(f'{self.ID} {self.username}')
 
-class User(AbstractUser):
-    """User model."""
+
+"""class User(AbstractUser):
+    User model.
 
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
     username = None
-    email = models.EmailField('email address', unique=True)
-
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = []"""
 
 
 class MoedaPadrao(models.Model):
@@ -445,7 +446,7 @@ class Minigame_User(models.Model):
 class Perfil(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
 
-    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL')
+    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL', null=True, blank=True)
 
     IMG_Perfil = models.CharField(max_length=999, null=True, blank=True)
 
