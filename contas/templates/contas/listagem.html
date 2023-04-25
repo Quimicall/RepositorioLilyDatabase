@@ -12,16 +12,19 @@
     <header>
         <div class="center">
             <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
-            <nav class="menu">
-                <a href="home/">Home</a>
-                <a href="#">Sobre</a>
-                <a href="#">Menu</a>
-                <a href="#">What?</a>
-            </nav>
+            <ul class="menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="{% url 'waifu' %}" class="nav-link">Waifu</a></li>
+                <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Sair</a></li>
+                {% endif %}
+            </ul>
         </div>
 
         <div class="lista">
             <div class="texto-sobre">
+                <h1>Olá, {{ request.user.username }} , seja muito bem vindo(a)</h1>
                 <h2>Listagem</h2>
                 {% for Carta in Cartas %}
                     <li> <span style="color: #90EE90;">{{Carta.nome}}</span> - {{ Carta.data }} - {{Carta.valor}} - {{Carta.categoria}} - <a href="{{Carta.imagem}}">{{Carta.imagem}}</a></li>

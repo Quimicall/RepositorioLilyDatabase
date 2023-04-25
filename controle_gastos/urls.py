@@ -26,8 +26,8 @@ import contas.views
 
 urlpatterns = [
         path('admin/', admin.site.urls),
-        path('waifu', listagem),
-        path('home/', home),
+        path('waifu/', listagem, name="waifu"),
+        path('home/', home, name="home"),
         path('accounts/', include('django.contrib.auth.urls')),
         path('login/', login)
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
