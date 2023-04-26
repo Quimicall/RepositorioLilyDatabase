@@ -446,16 +446,18 @@ class Minigame_User(models.Model):
 class Perfil(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
 
-    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL', null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL')
 
-    IMG_Perfil = models.CharField(max_length=999, null=True, blank=True)
+    nome_completo = models.CharField(max_length=150, null=True)
 
-    descricao_perfil = models.CharField(max_length=999, null=True, blank=True)
+    IMG_Perfil = models.CharField(max_length=999, null=True)
+
+    descricao_perfil = models.CharField(max_length=999, null=True)
 
     objects = models.Manager()
 
     def __str__(self):
-        return str(f'{self.user}')
+        return str(f' | {self.nome_completo} | {self.ID} | ')
 
 
 class MercadoGlobal(models.Model):
