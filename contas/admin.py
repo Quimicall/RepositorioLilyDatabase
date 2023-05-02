@@ -35,6 +35,7 @@ from .models import Talentos
 from .models import Passivas
 from .models import CampoDeTreinamento
 from .models import User
+from django.contrib.auth.admin import UserAdmin
 
 
 admin.site.register(Categoria)
@@ -71,7 +72,8 @@ admin.site.register(Metas)
 admin.site.register(Talentos)
 admin.site.register(Passivas)
 admin.site.register(CampoDeTreinamento)
-admin.site.register(User)
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 # Registre seus models aqui.

@@ -1,8 +1,55 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
-from .models import Carta
+from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.models import User, Group
+from .models import Carta, Perfil
+from django.views.generic import TemplateView
+from controle_gastos.forms import UsuarioForm
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 import datetime
+
+
+class UsuarioCreate(CreateView):
+    template_name = "contas/form.html"
+    form_class = UsuarioForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        grupo = get_object_or_404(Group, name='Usuarios')
+
+        url = super().form_valid(form)
+
+        self.object.groups.add(grupo)
+        self.object.save()
+
+        Perfil.objects.create(usuario=self.object)
+
+        return url
+
+    """def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Registro de novo usuário"
+        context['botao'] = "Cadastrar"""
+
+
+class PerfilUpdate(UpdateView):
+    template_name = 'contas/form.html'  # Fazer um HTML para o perfil. AMÉM FUNCIONOU IRMÃOS !!!
+    model = Perfil
+    fields = ["nome_completo", "IMG_Perfil", "descricao_perfil"]
+    success_url = reverse_lazy("home")
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Perfil, usuario=self.request.user)
+        return self.object
+
+    """def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Registro de novo usuário"
+        context['botao'] = "Cadastrar
+        return context"""
 
 
 def home(request):

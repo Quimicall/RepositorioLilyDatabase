@@ -13,13 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
 from django.template.defaulttags import url
 from django.urls import path, include
-from contas.views import home, listagem, login
+from contas.views import home, listagem, login, UsuarioCreate, PerfilUpdate
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 import controle_gastos.forms
 import contas.views
@@ -29,7 +30,9 @@ urlpatterns = [
         path('waifu/', listagem, name="waifu"),
         path('home/', home, name="home"),
         path('accounts/', include('django.contrib.auth.urls')),
-        path('login/', login)
+        path('login/', auth_views.LoginView.as_view(), name='login'),
+        path('registrar/', UsuarioCreate.as_view(), name='registrar'),
+        path('atualizar-dados/', PerfilUpdate.as_view(), name='atualizar-dados'),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

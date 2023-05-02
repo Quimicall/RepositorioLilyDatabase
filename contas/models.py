@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -9,22 +9,22 @@ from django.db import models
 
 # Perguntar para o professor se a Ascensao está correta, para puxar uma ascensao daquela para varias cartas.
 
-class User(models.Model):
+"""class User(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
 #piroquinha cinza
     username = models.CharField(max_length=150)
 
     email = models.EmailField('email address', unique=True)  # email = models.CharField(max_length=200)
 
-    """senha = models.(max_length=100)
+   senha = models.(max_length=100)
 
-    senha2 = models.CharField(max_length=100)"""
+    senha2 = models.CharField(max_length=100)
 
     def __str__(self):
         return str(f'{self.ID} {self.username}')
 
 
-"""class User(AbstractUser):
+class User(AbstractUser):
     User model.
 
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_User')
@@ -152,7 +152,7 @@ class Item(models.Model):
 
     Item_Nome = models.CharField(max_length=999)
 
-    img_item = models.CharField(max_length=999)
+    img_item = models.FileField(upload_to='item/')
 
     HP_Item = models.DecimalField(max_digits=999, decimal_places=0, default=0)
 
@@ -446,11 +446,11 @@ class Minigame_User(models.Model):
 class Perfil(models.Model):
     ID = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_PERFIL_USER')
 
-    user = models.OneToOneField(User, on_delete=models.PROTECT, verbose_name='ID_USER_PERFIL')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='ID_USER_PERFIL')
 
     nome_completo = models.CharField(max_length=150, null=True)
 
-    IMG_Perfil = models.CharField(max_length=999, null=True)
+    IMG_Perfil = models.FileField(upload_to='ftperf/')
 
     descricao_perfil = models.CharField(max_length=999, null=True)
 
