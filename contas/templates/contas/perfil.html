@@ -5,9 +5,11 @@
 </head>
 <body>
     <h1>Perfil de Usuário</h1>
-    <p><strong>Nome de Usuário:</strong> {{ username }}</p>
-    <p><strong>Email:</strong> {{ email }}</p>
-    <p><strong>Informações Adicionais:</strong> {{ info_adicional }}</p>
+    <p><strong>Foto de Perfil:</strong> {{ request.Perfil.IMG_Perfil }}</p>
+    <p><strong>Nome de Usuário:</strong> {{ request.user.username }}</p>
+    <p><strong>Nome Completo:</strong> {{ request.Perfil.nome_completo }}</p>
+    <p><strong>Email:</strong> {{ request.user.email }}</p>
+    <p><strong>Informações Adicionais:</strong> {{ request.Perfil.descricao_perfil }}</p>
     <h2>Alterar Senha</h2>
     <form method="POST">
         {% csrf_token %}
@@ -20,7 +22,7 @@
         <button type="submit">Salvar</button>
     </form>
 
-    <script src="{% static 'js/jquery-3.6.4.min.js'%}"></script>
+
 
     {% block scripts %}
 

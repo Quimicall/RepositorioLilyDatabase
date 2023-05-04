@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload</title>
+    {% load static %}
+    <link href="{% static 'css/login.css' %}" rel="stylesheet" >
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    {%  csrf_token %}
+
+    {{ form.as_p }}
+
+  <button type="submit">Salvar</button>
+</form>
+    <script src="{% static 'js/jquery-3.6.4.min.js'%}"></script>
+
+    {% block scripts %}
+    <script>
+
+        $(document).ready(function(){
+
+            alert("importação ok!");
+
+        });
+    </script>
+
+    {% endblock %}
+</body>
+</html>

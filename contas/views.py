@@ -35,10 +35,10 @@ class UsuarioCreate(CreateView):
 
 
 class PerfilUpdate(UpdateView):
-    template_name = 'contas/form.html'  # Fazer um HTML para o perfil. AMÉM FUNCIONOU IRMÃOS !!!
+    template_name = 'contas/form-upload.html'  # Fazer um HTML para o perfil. AMÉM FUNCIONOU IRMÃOS !!!
     model = Perfil
     fields = ["nome_completo", "IMG_Perfil", "descricao_perfil"]
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("perfil")
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Perfil, usuario=self.request.user)
@@ -50,6 +50,17 @@ class PerfilUpdate(UpdateView):
         context['titulo'] = "Registro de novo usuário"
         context['botao'] = "Cadastrar
         return context"""
+
+
+class Perfiluser(UpdateView):
+    template_name = 'contas/perfil.html'  # Fazer um HTML para o perfil. AMÉM FUNCIONOU IRMÃOS !!!
+    model = Perfil
+    fields = ["nome_completo", "IMG_Perfil", "descricao_perfil"]
+    success_url = reverse_lazy("perfil")
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Perfil, usuario=self.request.user)
+        return self.object
 
 
 def home(request):
