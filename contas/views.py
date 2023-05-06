@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import User, Group
-from .models import Carta, Perfil
+from .models import Carta, Perfil, Carteira
 from django.views.generic import TemplateView
 from controle_gastos.forms import UsuarioForm
 from django.urls import reverse_lazy
@@ -50,6 +50,25 @@ class PerfilUpdate(UpdateView):
         context['titulo'] = "Registro de novo usuário"
         context['botao'] = "Cadastrar
         return context"""
+
+
+class CarteiraCreate(CreateView):
+    model = Carteira
+    fields = ["ID_USER_carteira", "Sakuras_user", "LotusPaga_user"]
+
+    """def form_valid(self, form):
+        self.object.save()
+        Carteira.objects.create(ID_USER_carteira=self.object)"""
+
+
+class CarteiraUpdate(UpdateView):
+    template_name = 'contas/form-upload.html'  # Fazer um HTML para o perfil. AMÉM FUNCIONOU IRMÃOS !!!
+    model = Carteira
+    fields = ["ID_USER_carteira", "Sakuras_user", "LotusPaga_user"]
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Carteira, ID_USER_carteira=self.request.user)
+        return self.object
 
 
 class Perfiluser(UpdateView):

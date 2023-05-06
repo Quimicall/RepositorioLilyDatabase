@@ -1,0 +1,14 @@
+<h1>Batalha de Cartas</h1>
+<h2>Carta 1: {{ carta1.nome }}</h2>
+<p>Atributo Base: {{ carta1.atributo_base }}</p>
+<p>Vida: {{ carta1.vida }}</p>
+
+<h2>Carta 2: {{ carta2.nome }}</h2>
+<p>Atributo Base: {{ carta2.atributo_base }}</p>
+<p>Vida: {{ carta2.vida }}</p>
+
+{% if vencedor %}
+    <h3>Vencedor: {{ vencedor.nome }}</h3>
+{% else %}
+    <h3>Empate!</h3>
+{% endif %}

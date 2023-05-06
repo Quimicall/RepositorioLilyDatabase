@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
 # Create your models here.
 # criar uma consulta para buscar o nome dos itens da tabela.
 
@@ -270,6 +269,18 @@ class Carta(models.Model):
         return str(f'{self.nome}')
 
 
+# Essa tabela, é temporaria, manter apenas para testes rapidos.
+"""class Cartas(models.Model):
+    nome = models.CharField(max_length=100)
+    atributo_base = models.IntegerField()
+    vida = models.IntegerField()
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.nome"""
+
+
 class CopiaCarta(models.Model):
     ID_CCARD = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID_COPIACARTA')
 
@@ -521,11 +532,13 @@ class DeckUser(models.Model):
     # puxar o ID DO USER PRO DECK
     IDUserDeck = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    NomeDeckUser = models.CharField(max_length=500)
+    # NomeDeckUser = models.CharField(max_length=500, default=0)
 
     QuantidadeDeCartaUser = models.DecimalField(max_digits=999, decimal_places=0, default=64)
 
-    cartasDeckUser = models.ForeignKey(Carta, on_delete=models.CASCADE)
+    cartasDeckUser = models.ManyToManyField(Carta, related_name='decks')
+
+    objects = models.Manager()
 
     # FOR EACH ATRIBUIR A CARTA.
 
